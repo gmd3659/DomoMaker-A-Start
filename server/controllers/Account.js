@@ -3,11 +3,11 @@ const models = require('../models');
 const { Account } = models;
 
 const loginPage = (req, res) => {
-  res.render('login');
+  res.render('login', { csrfToken: req.csrfToken() });
 };
 
 const signupPage = (req, res) => {
-  res.render('signup');
+  res.render('signup', { csrfToken: req.csrfToken() });
 };
 
 const logout = (req, res) => {
@@ -20,7 +20,7 @@ const login = (request, response) => {
   const res = response;
 
   const username = `${req.body.username}`;
-  const password = `${req.body.password}`;
+  const password = `${req.body.pass}`;
 
   if (!username || !password) {
     return res.status(400).json({ error: 'RAWR! All fields are required!' });
